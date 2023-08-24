@@ -21,7 +21,7 @@ jobs:
           command: |
           # export TAG=0.2. << pipeline.number >>
           # export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME
-          docker build -t nodejswebapp -t adijaiswal/nodejswebapp:latest .
+          docker build -t nodejswebapp -t gopuc365/nodejswebapp:latest
           echo $DOCKER_PWD | docker login -u gopuc365 --password-stdin
           docker push adijaiswal/nodejswebapp:latest     
 workflows:
