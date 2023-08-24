@@ -23,7 +23,13 @@ jobs:
           # export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME
           docker build -t nodejswebapp1 -t gopuc365/nodejswebapp1:latest .
           echo $DOCKER_PWD | docker login -u gopuc365 --password-stdin
-          docker push gopuc365/nodejswebapp1:latest   
+          docker push gopuc365/nodejswebapp1:latest  
+            - run:
+          command: docker build -t miyajan/test-circleci-docker:${CIRCLE_TAG} .
+      - run:
+          command: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+      - run:
+          command: docker push miyajan/test-circleci-docker:${CIRCLE_TAG}
 workflows:
   build_test:
     jobs:
