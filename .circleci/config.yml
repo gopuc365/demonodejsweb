@@ -1,10 +1,19 @@
 orbs:
   docker: circleci/docker@1.5.0
   version: 2.1
+  executors:
+  docker-publisher: 
+    environment:
+     # image_name: nodejsgp
+    docker: # Each job requires specifying an executor
+    # (either docker, macos, or machine), see
+      - image: circleci/node:12
+        auth:
+            username: $DOCKER_USR
+            password: $DOCKER_PWD
 jobs:
   build_test:
-    docker:
-       - image: circleci/node:12
+      executor: docker-publisher:
     steps:
        - checkout
        - run:
@@ -12,24 +21,28 @@ jobs:
            command:
             npm install --save
   build_docker_image:
-        docker:
-        - image: circleci/node:12
-        auth:
-          username: $DOCKER_USER
-          password: $DOCKER_PWD
+
         steps:
           - checkout
           - setup-remote_docker:  
               docker_layer_caching: false
         - run:
+
+     executor: docker-publisher:
+    steps:
+      - checkout
+      - setup-remote_docker:  
+          docker_layer_caching: false
+      - run:
+
           name: Build Docker image
           command: |
-          echo "$DOCKER_PWD" | docker login -u "gopuc365" --password-stdin
-          docker build -t gopuc365/nodejswebapp1:latest .
-          docker push gopuc365/nodejswebapp1:latest
-workflows:
-  version: 2
-  build_test:
-    jobs:
-      - build_test
-      - build_docker_image
+             echo "$DOCKER_PWD" | docker login -u "gopuc365" --password-stdin
+             docker build -t gopuc365/nodejswebapp1:latest .
+             docker push gopuc365/nodejswebapp1:latest
+   workflows:
+     version: 2
+       build_test:
+          jobs:
+             - build_test
+              - build_docker_image
