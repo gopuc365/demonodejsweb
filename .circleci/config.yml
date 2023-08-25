@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-          echo "$DOCKER_PWD" | docker login -u gopuc365 --password-stdin
+          echo "$DOCKER_PWD" | docker login -u "gopuc365" --password-stdin
           docker build -t gopuc365/nodejswebapp1:latest .
           docker push gopuc365/nodejswebapp1:latest
 workflows:
