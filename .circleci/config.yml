@@ -13,7 +13,7 @@ orbs:
             password: $DOCKER_PWD
 jobs:
   build_test:
-      executor: docker-publisher
+      executor: docker-publisher:
     steps:
        - checkout
        - run:
@@ -21,7 +21,7 @@ jobs:
            command:
             npm install --save
   build_docker_image:
-     executor: docker-publisher
+     executor: docker-publisher:
     steps:
       - checkout
       - setup-remote_docker:  
