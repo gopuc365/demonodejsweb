@@ -13,7 +13,7 @@ orbs:
             password: $DOCKER_PWD
 jobs:
   build_test:
-      executor: docker-publisher:
+      
     steps:
        - checkout
        - run:
@@ -28,7 +28,7 @@ jobs:
               docker_layer_caching: false
         - run:
 
-     executor: docker-publisher:
+     
     steps:
       - checkout
       - setup-remote_docker:  
