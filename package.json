@@ -1,15 +1,16 @@
 {
-  "dependencies": {
-    "express": "*"
-  },
-  "scripts": {
-    "start": "node app.js"
-  },
-  "name": "basic-nodejs",
+  "name": "devops-express-server",
   "version": "1.0.0",
-  "main": "app.js",
-  "devDependencies": {},
-  "author": "Aditya",
-  "license": "MIT",
-  "description": "NodeJS Project with Expres FrameWork and Running in Docker Container"
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
 }
