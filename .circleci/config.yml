@@ -20,7 +20,7 @@ jobs:
            name: Install npm dependencies
            command:
             npm install --save
-  build_docker_image:
+  build_docker:
     executor: docker-publisher
     steps:
       - checkout
@@ -33,7 +33,7 @@ jobs:
              docker build -t gopuc365/nodejswebapp1:latest .
              docker push gopuc365/nodejswebapp1:latest
 workflows:
-  version: 2
-    jobs:
-       - build_test
-       - build_docker_image
+  jobs:
+    build_test_and_build_docker:
+      - build_test
+      - build_docker
