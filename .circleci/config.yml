@@ -1,3 +1,4 @@
+version: '2.1'
 orbs:
   docker: circleci/docker@1.5.0
   version: 2.1
@@ -13,14 +14,14 @@ orbs:
             password: $DOCKER_PWD
 jobs:
   build_test:
-         steps:
+    steps:
        - checkout
        - run:
            name: Install npm dependencies
            command:
             npm install --save
   build_docker_image:
-        steps:
+      steps:
       - checkout
       - setup-remote_docker:  
           docker_layer_caching: false
@@ -31,7 +32,7 @@ jobs:
              docker build -t gopuc365/nodejswebapp1:latest .
              docker push gopuc365/nodejswebapp1:latest
 workflows:
-     version: 2
-            jobs:
-             - build_test
-             - build_docker_image
+  version:2
+    jobs:
+      - build_test
+      - build_docker_image
